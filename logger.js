@@ -116,9 +116,9 @@ var Logger = (function(){
     if ( module ) {
       if ( showline ) {
         var line = _getlinenumber();
-        args[0] = "[" + module + ":" + line + "] " + args[0];
+        args.unshift( "[" + module + ":" + line + "]" );
       } else {
-        args[0] = "[" + module + "] " + args[0];
+        args.unshift("[" + module + "]");
       }
     }
 
