@@ -1,0 +1,19 @@
+{
+  "name": "lite-log",
+  "authors": [
+    "FatShotty <fat@fatshotty.net>"
+  ],
+  "description": "Simple easy-to-use library that wraps the `window.console`",
+  "main": "logger.js",
+  "moduleType": [],
+  "keywords": [
+    "logger",
+    "console",
+    "javascript log"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ]
+}
