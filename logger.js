@@ -114,11 +114,17 @@ var Logger = (function(){
     args = Array.prototype.slice.call(arguments, 3);
 
     if ( module ) {
+      var module_str = "";
       if ( showline ) {
         var line = _getlinenumber();
-        args.unshift( "[" + module + ":" + line + "]" );
+        module_str = "[" + module + ":" + line + "]";
       } else {
-        args.unshift("[" + module + "]");
+        module_str = "[" + module + "]";
+      }
+      if ( typeof args[0] === "string" ) {
+        args[0] = module_str + " " + args[0];
+      } else {
+        args.unshift( module_str );
       }
     }
 
