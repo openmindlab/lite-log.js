@@ -1,4 +1,5 @@
 var Logger = (function(){
+  'use strict';
 
   var _mute = false;
 
@@ -141,7 +142,7 @@ var Logger = (function(){
   Logger.prototype.log = Logger.prototype.l;
   Logger.prototype.debug = Logger.prototype.d;
 
-  for ( fn in Logger.prototype ) {
+  for ( var fn in Logger.prototype ) {
     if ( Logger.prototype.hasOwnProperty(fn) ) {
       Logger[ fn ] = Logger.prototype[ fn ];
     }
