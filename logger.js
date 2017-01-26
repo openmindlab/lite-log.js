@@ -1,6 +1,8 @@
 var Logger = (function(){
   'use strict';
 
+  var instances = [];
+
   var _mute = false;
 
   function Logger(module, showline){
@@ -26,7 +28,11 @@ var Logger = (function(){
       this.modulename = "*";
     }
 
+    instances.push(this);
+
     this.showline = !!showline;
+
+    this.mute( _mute );
 
   }
 
@@ -38,12 +44,17 @@ var Logger = (function(){
     l: _wrap("log"),
     d: _wrap("debug"),
 
-    mute: function(mute) {
+    mute: function(mute, all) {
       if ( this instanceof Logger ) {
         this._mute = !!mute;
         return this;
       } else {
         _mute = !!mute;
+        if ( all === true ) {
+          for( var i = 0, log; log = instances[i]; i++ ) {
+            log.mute( _mute );
+          }
+        }
         return Logger;
       }
     }
