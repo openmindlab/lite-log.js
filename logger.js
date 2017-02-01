@@ -1,4 +1,4 @@
-var Logger = (function(){
+window.Logger = (function(){
   'use strict';
 
   var instances = [];
