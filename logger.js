@@ -1,4 +1,12 @@
-window.Logger = (function(){
+(function _define (global, factory) {
+  if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
+    exports.Logger = factory(); // CommonJS
+  } else if (typeof define === 'function' && define.amd) {
+    define('litelog', factory); // AMD
+  } else {
+    global.Logger = factory();
+  }
+})(this, function build() {
   'use strict';
 
   var instances = [];
@@ -140,7 +148,7 @@ window.Logger = (function(){
       }
     }
 
-    if ( window.console ){
+    if ( typeof console !== "undefined" ){
       return console[ level ].apply( console, args );
     } else {
       return false;
@@ -160,4 +168,4 @@ window.Logger = (function(){
   }
 
   return Logger;
-})();
+});
