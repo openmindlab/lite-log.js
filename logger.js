@@ -1,6 +1,6 @@
 (function _define (global, factory) {
   if (typeof module !== 'undefined' && typeof module.exports === 'object' ) {
-    mdoule.exports = factory(); // NodeJs
+    module.exports = factory(); // NodeJs
   } else if (typeof define === 'function' && define.amd) {
     define('litelog', factory); // AMD
   } else {
