@@ -1,12 +1,13 @@
 (function _define (global, factory) {
-  if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
-    exports.Logger = factory(); // CommonJS
+  if (typeof module !== 'undefined' && typeof module.exports === 'object' ) {
+    mdoule.exports = factory(); // NodeJs
   } else if (typeof define === 'function' && define.amd) {
     define('litelog', factory); // AMD
   } else {
+    // general: browser
     global.Logger = factory();
   }
-})(this, function build() {
+})(window, function build() {
   'use strict';
 
   var instances = [];
