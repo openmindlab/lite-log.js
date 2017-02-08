@@ -150,6 +150,12 @@
     }
 
     if ( typeof console !== "undefined" ){
+      if ( ! console[ level ] && console.log ) {
+        level = "log";
+      } else {
+        // given level cannot be used
+        return false;
+      }
       return console[ level ].apply( console, args );
     } else {
       return false;
