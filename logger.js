@@ -153,7 +153,7 @@
       if ( ! console[ level ] && console.log ) {
         level = "log";
       }
-      return console[ level ] && console[ level ].apply( console, args );
+      return console[ level ] && console[ level ].apply && console[ level ].apply( console, args );
     } else {
       return false;
     }
