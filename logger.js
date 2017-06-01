@@ -13,6 +13,20 @@
   var instances = [];
 
   var _mute = false;
+  /**
+   * INFO: 3
+   * WARN: 2
+   * ERROR: 1
+   * NONE: 0
+   */
+  var Levels = {
+    "error": 1,
+    "warn": 2,
+    "info": 3,
+    "log": 4,
+    "debug": 4
+  };
+  var _level = Levels.log; // default LOG
 
   function Logger(module, showline){
 
@@ -42,6 +56,7 @@
     this.showline = !!showline;
 
     this.mute( _mute );
+    this.level( _level );
 
   }
 
@@ -66,23 +81,54 @@
         }
         return Logger;
       }
+    },
+    level: function(lvl, all) {
+      lvl = parseInt(lvl, 10);
+      if ( isNaN( lvl ) )
+        throw "No valid 'level' specified: " + lvl;
+
+      if ( this instanceof Logger ) {
+        this._level = lvl;
+        return this;
+      } else {
+        _level = lvl;
+        if ( all === true ) {
+          for( var i = 0, log; log = instances[i]; i++ ) {
+            log.level( _level );
+          }
+        }
+        return Logger;
+      }
     }
+
 
   };
 
   function _wrap(level) {
-    return function(args) {
-      args = Array.prototype.slice.call(arguments, 0);
+    return function(/* args... */) {
+      var args = Array.prototype.slice.call(arguments, 0);
+      var _current_level = null;
       if ( this instanceof Logger ) {
         if ( this._mute ) return false;
         args.unshift(this.showline);
         args.unshift(this.modulename);
+        _current_level = this._level;
       } else {
         if ( _mute ) return false;
         args.unshift(false);  // showline
         args.unshift(undefined); // modulename
+        _current_level = _level;
       }
+
+      if ( _current_level ) {
+        var n_lvl = Levels[ level ];
+        if ( n_lvl > _current_level ){
+          return false;
+        }
+      }
+
       args.unshift(level);
+
       return Logger._write.apply( null, args);
     };
 
@@ -130,9 +176,9 @@
       return fileparts.join(".");
   };
 
-  Logger._write = function(level, module, showline, args) {
+  Logger._write = function(level, module, showline /*, args... */) {
 
-    args = Array.prototype.slice.call(arguments, 3);
+    var args = Array.prototype.slice.call(arguments, 3);
 
     if ( module ) {
       var module_str = "";
@@ -148,6 +194,14 @@
         args.unshift( module_str );
       }
     }
+
+    return Logger.__write_stream__.apply(Logger, args);
+  };
+
+  Logger.__write_stream__ = function(/* args... */) {
+    var
+      args = Array.prototype.slice.call(arguments),
+      level = args.shift();
 
     if ( typeof console !== "undefined" ){
       if ( ! console[ level ] && console.log ) {
