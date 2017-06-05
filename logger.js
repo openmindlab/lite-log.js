@@ -83,6 +83,13 @@
       }
     },
     level: function(lvl, all) {
+      if ( arguments.length === 0 ) {
+        if ( this instanceof Logger ) {
+          return this._level;
+        } else {
+          return _level;
+        }
+      }
       lvl = parseInt(lvl, 10);
       if ( isNaN( lvl ) )
         throw "No valid 'level' specified: " + lvl;
@@ -120,7 +127,7 @@
         _current_level = _level;
       }
 
-      if ( _current_level ) {
+      if ( _current_level !== null && ! isNaN( _current_level ) ) {
         var n_lvl = Levels[ level ];
         if ( n_lvl > _current_level ){
           return false;
@@ -194,6 +201,8 @@
         args.unshift( module_str );
       }
     }
+
+    args.unshift(level);
 
     return Logger.__write_stream__.apply(Logger, args);
   };
