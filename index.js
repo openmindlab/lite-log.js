@@ -80,6 +80,8 @@ export default class Log{
             /*
              * Define if default methods and aliases
              * can be displayed.
+             * Alias gets its method reference thanks to
+             * mayShow() function.
              */
             const newMethods = {
                 [method.name]: mayShow(),

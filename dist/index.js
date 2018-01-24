@@ -96,6 +96,8 @@ var Log = function () {
         /*
          * Define if default methods and aliases
          * can be displayed.
+         * Alias gets its method reference thanks to
+         * mayShow() function.
          */
         var newMethods = (_newMethods = {}, _defineProperty(_newMethods, method.name, mayShow()), _defineProperty(_newMethods, method.alias, mayShow()), _newMethods);
 
