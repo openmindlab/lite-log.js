@@ -1,6 +1,7 @@
 # 👀 Lite-Log 👀
 
 [![Build Status](https://travis-ci.org/micheleriva/lite-log.js.svg?branch=master)](https://travis-ci.org/micheleriva/lite-log.js)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://img.shields.io/badge/coverage-100%25-green.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b97de7b0fb25f63253dc/maintainability)](https://codeclimate.com/github/micheleriva/lite-log.js/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/micheleriva/lite-log.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/micheleriva/lite-log.js?targetFile=package.json)
 

@@ -11,8 +11,11 @@
   },
   "scripts": {
     "start": "node dist/index.test.js",
-    "test": "jest index.test.js --coverage",
+    "test": "jest index.test.js --coverage --config",
     "build": "uglify-js dist/index.js --compress --output dist/index.min.js"
+  },
+  "jest": {
+    "verbose": true
   },
   "author": "OpenMind",
   "license": "ISC"
