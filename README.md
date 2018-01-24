@@ -1,4 +1,4 @@
-# Lite-Log 🕶
+# 👀 Lite-Log 👀
 
 [![Build Status](https://travis-ci.org/micheleriva/lite-log.js.svg?branch=master)](https://travis-ci.org/micheleriva/lite-log.js)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b97de7b0fb25f63253dc/maintainability)](https://codeclimate.com/github/micheleriva/lite-log.js/maintainability)
@@ -14,6 +14,7 @@ You will also be able to mute your logs, take a look at the examples below.
     - [Mute a logger](#mute-a-logger)
     - [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
 - [Available Methods](#available-methods)
+- [Using aliases](#using-aliases)
 
 ### [Installation](#installation)
 
@@ -56,7 +57,7 @@ const ShoppingCartLogger = new Log('Shopping cart', false);
 ShoppingCartLogger.log('Debug here!');
 // => no output!
 ```
-As you can see, the `init()` method accepts a boolean value. if you need to mute your loggers, you will just need to pass a `false` value.
+As you can see, the `Log()` instance accepts a boolean value as a second argument. If you need to mute your loggers, you will just need to pass a `false` value.
 
 #### [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
 ```js
@@ -71,16 +72,33 @@ const ShoppingCartLogger = new Log('Shopping cart', environment);
 ShoppingCartLogger.log('Debug here!');
 // => no output! In that case, environment variable results false!
 ```
+
+### [Using aliases](#using-aliases)
+
+Evey method has an alias. Check the example and the table below to learn more:
+```javascript
+import Log from 'lite-log'
+
+const Logger = new Log();
+
+Logger.l('Hey!');
+// => [~ 👀 Lite-log ~] Hey!
+
+Logger.w('What a bad error!');
+// => [~ ✋ Lite-log ~] What a bad error!
+
+```
+
 ### [Available methods](#available-methods)
 
-| Method   | Js Api               | Output 
-| -------- | -------------------- | ------
-| log      | `console.log()`      | [~ 👀 Lite-log ~]
-| warn     | `console.warn()`     | [~ ✋ Lite-log ~]
-| error    | `console.error()`    | [~ ‼️ Lite-log ~]
-| info     | `console.info()`     | [~ ℹ️ Lite-log ~]
-| count    | `console.count()`    | [~ ✏ Lite-log ~]
-| group    | `console.group()`    | [~ ☀️ Lite-log ~]
-| groupEnd | `console.groupEnd()` | [~ ⛅ Lite-log ~]
-| time     | `console.time()`     | [~ ⏱ Lite-log ~]
-| timeEnd  | `console.timeEnd()`  | [~ ⏰ Lite-log ~]
+| Method   | Alias | Js Api               | Output 
+| -------- | ----- | -------------------- | ------
+| log      | l     | `console.log()`      | [~ 👀 Lite-log ~]
+| warn     | w     | `console.warn()`     | [~ ✋ Lite-log ~]
+| error    | e     | `console.error()`    | [~ ‼️ Lite-log ~]
+| info     | i     | `console.info()`     | [~ ℹ️ Lite-log ~]
+| count    | c     | `console.count()`    | [~ ✏ Lite-log ~]
+| group    | gs    | `console.group()`    | [~ ☀️ Lite-log ~]
+| groupEnd | ge    | `console.groupEnd()` | [~ ⛅ Lite-log ~]
+| time     | ts    | `console.time()`     | [~ ⏱ Lite-log ~]
+| timeEnd  | te    | `console.timeEnd()`  | [~ ⏰ Lite-log ~]
