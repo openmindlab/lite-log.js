@@ -1,0 +1,19 @@
+{
+  "name": "lite-log",
+  "version": "2.0.0",
+  "description": "",
+  "main": "./dist/index.min.js",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.1.4",
+    "uglify-js": "^3.3.8"
+  },
+  "scripts": {
+    "start": "node dist/index.test.js",
+    "test": "jest dist/index.test.js",
+    "build": "uglify-js dist/index.js --compress --output dist/index.min.js"
+  },
+  "author": "OpenMind",
+  "license": "ISC"
+}
