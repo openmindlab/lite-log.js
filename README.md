@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b97de7b0fb25f63253dc/maintainability)](https://codeclimate.com/github/micheleriva/lite-log.js/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/micheleriva/lite-log.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/micheleriva/lite-log.js?targetFile=package.json)
 
-Lite-Log is a lightweight (726 byte gziped) logging library for web browsers written in JavaScript with no dependencies. <br />
+Lite-Log is a lightweight (913 byte gziped) logging library for web browsers written in JavaScript with no dependencies. <br />
 You will also be able to mute your logs, take a look at the examples below.
 
 - [Installation](#installation)
@@ -28,7 +28,7 @@ $ npm install lite-log
 ```js
 import Log from 'lite-log'
 
-const Logger = new Log().init();
+const Logger = new Log();
 
 Logger.warn('Hey pay attention here!');
 // => [~ ✋ Lite-log ~] Hey pay attention here!
@@ -39,7 +39,7 @@ Let's make an example. If you want to debug only a shopping cart component, you 
 ```js
 import Log from 'lite-log'
 
-const ShoppingCartLogger = new Log('Shopping cart').init();
+const ShoppingCartLogger = new Log('Shopping cart');
 
 ShoppingCartLogger.log('Debug here!');
 // => [~ 👀 Shopping cart ~] Debug here!
@@ -51,7 +51,7 @@ You're also able to mute a logger. Take a look at the following example:
 ```js
 import Log from 'lite-log'
 
-const ShoppingCartLogger = new Log('Shopping cart').init(false);
+const ShoppingCartLogger = new Log('Shopping cart', false);
 
 ShoppingCartLogger.log('Debug here!');
 // => no output!
@@ -66,7 +66,7 @@ import { env } from 'app.env'
 const environment = env === "development";
 // If env === development, environment variable will be TRUE
 
-const ShoppingCartLogger = new Log('Shopping cart').init(environment);
+const ShoppingCartLogger = new Log('Shopping cart', environment);
 
 ShoppingCartLogger.log('Debug here!');
 // => no output! In that case, environment variable results false!
@@ -79,7 +79,6 @@ ShoppingCartLogger.log('Debug here!');
 | warn     | `console.warn()`     | [~ ✋ Lite-log ~]
 | error    | `console.error()`    | [~ ‼️ Lite-log ~]
 | info     | `console.info()`     | [~ ℹ️ Lite-log ~]
-| debug    | `console.debug()`    | [~ 👓 Lite-log ~]
 | count    | `console.count()`    | [~ ✏ Lite-log ~]
 | group    | `console.group()`    | [~ ☀️ Lite-log ~]
 | groupEnd | `console.groupEnd()` | [~ ⛅ Lite-log ~]
