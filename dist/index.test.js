@@ -61,6 +61,22 @@ test('Console.w test', function () {
 });
 
 /*
+ * Warn mute alias test
+ */
+
+console.oldUnmutedWarn = NoLogger.warn;
+NoLogger.warn = function (val) {
+    console.oldUnmutedWarn(val);
+    window.$muteWarn = '';
+};
+
+NoLogger.warn('I should not appear');
+
+test('Mute warn test', function () {
+    expect(window.$muteWarn).toBe('');
+});
+
+/*
  * Mute test test
  */
 
