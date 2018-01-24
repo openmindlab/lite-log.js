@@ -1,6 +1,9 @@
 
 # Created by https://www.gitignore.io/api/node,macos,phpstorm
 
+# Jest
+coverage
+
 ### macOS ###
 *.DS_Store
 .AppleDouble

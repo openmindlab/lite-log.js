@@ -10,6 +10,7 @@ jest.unmock('./index.js');
 
 
 var Logger = new _index2.default();
+var NoLogger = new _index2.default('Mute', false);
 
 /*
  * Log test
@@ -55,7 +56,23 @@ Logger.w = function (val) {
 
 Logger.w('warning, I\'m an alias!');
 
-test('Console.warn test', function () {
+test('Console.w test', function () {
     expect(window.$warning).toBe('[~ ✋ Lite-log ~] warning, I\'m an alias!');
+});
+
+/*
+ * Mute test test
+ */
+
+console.oldUnmutedLog = NoLogger.log;
+NoLogger.log = function (val) {
+    console.oldUnmutedLog(val);
+    window.$muteLog = '';
+};
+
+NoLogger.log('I should not appear');
+
+test('Mute logger test', function () {
+    expect(window.$muteLog).toBe('');
 });
 //# sourceMappingURL=index.test.js.map

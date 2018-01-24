@@ -2,6 +2,7 @@ jest.unmock('./index.js');
 import Log from './index';
 
 const Logger = new Log();
+const NoLogger = new Log('Mute', false);
 
 /*
  * Log test
@@ -47,6 +48,22 @@ Logger.w = (val) => {
 
 Logger.w('warning, I\'m an alias!');
 
-test('Console.warn test', () => {
+test('Console.w test', () => {
     expect(window.$warning).toBe('[~ ✋ Lite-log ~] warning, I\'m an alias!');
+});
+
+/*
+ * Mute test test
+ */
+
+console.oldUnmutedLog = NoLogger.log;
+NoLogger.log = (val) => {
+    console.oldUnmutedLog(val);
+    window.$muteLog = '';
+};
+
+NoLogger.log('I should not appear');
+
+test('Mute logger test', () => {
+    expect(window.$muteLog).toBe('');
 });

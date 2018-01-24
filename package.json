@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "node dist/index.test.js",
-    "test": "jest dist/index.test.js",
+    "test": "jest index.test.js --coverage",
     "build": "uglify-js dist/index.js --compress --output dist/index.min.js"
   },
   "author": "OpenMind",
