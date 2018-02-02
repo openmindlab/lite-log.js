@@ -2,21 +2,16 @@
   "name": "lite-log",
   "version": "2.0.0",
   "description": "",
-  "main": "./dist/index.min.js",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "jest": "^22.1.4",
-    "uglify-js": "^3.3.8"
-  },
+  "main": "dist/logger.umd.js",
   "scripts": {
-    "start": "node dist/index.test.js",
-    "test": "jest index.test.js --coverage --config",
-    "build": "uglify-js dist/index.js --compress --output dist/index.min.js"
+    "build": "microbundle -f umd -o dist --file logger --sourcemap n --compress false",
+    "dev": "microbundle watch -f umd -o dist --file logger --sourcemap n --compress false",
+    "test": "jest --coverage"
   },
-  "jest": {
-    "verbose": true
-  },
-  "author": "OpenMind",
-  "license": "ISC"
+  "author": "openmind",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^22.1.4",
+    "microbundle": "https://github.com/fatshotty/microbundle"
+  }
 }

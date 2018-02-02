@@ -1,102 +1,76 @@
-export default class Log{
+const instances = [];
+let muted = {mute: false, all: false};
 
-    /*
-     * Class' constructor.
-     * @Params:
-     *  logname @string
-     *  showGog @boolean
-     *
-     * @Returns:
-     *  @Object
-     */
-    constructor(logname, showLog){
-        this.logname = logname || 'Lite-log';
-        return this.exposeMethods(showLog);
+class Logger {
+
+    constructor(instanceName){
+
+      if ( this instanceof Logger ) {
+          this.__instance_name__ = instanceName || '';
+          muted.all && (this.mute = muted.mute);
+          instances.push(this)
+      } else {
+          Logger.print('', ...arguments);
+      }
+  }
+
+  get NAME() {
+      return this.__instance_name__;
+  }
+
+  static mute(bool, instance){
+    muted = {mute: !!bool, all: !!instance};
+    if ( muted.all ) {
+        for( let instance of instances )
+            instance.mute = muted.mute;
+    }
+  }
+
+  get mute() {
+        return this.__mute__;
+  }
+  set mute(bool) {
+        this.__mute__ = bool;
+  }
+
+  static print(type, ...args){
+    let obj;
+    switch (type){
+        case 'w': obj = {icon: '✋', method: 'warn'};  break;
+        case 'i': obj = {icon: 'ℹ️', method: 'info'};  break;
+        case 'd': obj = {icon: '🐛', method: 'log'}; break;
+        case 'e': obj = {icon: '‼️', method: 'error'}; break;
+        case 'l':
+        default:  obj = {icon: '👀', method: 'log'};   break;
     }
 
-    /*
-     * Methods currently supported by lite-log
-     */
-    methods(){
-        return [
-            { name: 'log'     , alias: 'l' , icon: '👀' },
-            { name: 'warn'    , alias: 'w' , icon: '✋' },
-            { name: 'error'   , alias: 'e' , icon: '‼️' },
-            { name: 'info'    , alias: 'i' , icon: 'ℹ️' },
-            { name: 'count'   , alias: 'c' , icon: '✏️' },
-            { name: 'group'   , alias: 'gs', icon: '☀️' },
-            { name: 'groupEnd', alias: 'ge', icon: '⛅️' },
-            { name: 'time'    , alias: 'ts', icon: '⏱' },
-            { name: 'timeEnd' , alias: 'te', icon: '⏰' }
-        ]};
-
-    /*
-     * Expose supported methods by
-     * overriding default console.
-     */
-    exposeMethods(showLog){
-
-        /*
-         * Should show logs?
-         */
-        showLog === undefined ? showLog = true : showLog;
-
-        /*
-         * Declare available methods as empty object.
-         * It will be filled after the loop.
-         */
-        const availableMethods = {};
-
-        /*
-         * Apply basic styling to logs and assign
-         * a new logging method looping the methods() function.
-         */
-        this.methods().map((method) => {
-
-            /*
-             * Get browser's default console instance.
-             */
-            const oldConsole = console[method.name];
-
-            /*
-             * Override default console behavior.
-             * Add style to console output and write instance reference (logname).
-             */
-            console[method.name] = (...args) => {
-                args.unshift(`[~ ${method.icon} ${this.logname} ~] `);
-                oldConsole.apply(null, args)
-            };
-
-            /*
-             * Should the log to be displayed?
-             * if false, point to null function.
-             */
-            const mayShow = () =>{
-                return showLog
-                    ? console[method.name]
-                    : () => {};
-            };
-
-            /*
-             * Define if default methods and aliases
-             * can be displayed.
-             * Alias gets its method reference thanks to
-             * mayShow() function.
-             */
-            const newMethods = {
-                [method.name]: mayShow(),
-                [method.alias]: mayShow()
-            };
-
-            /*
-             * Finally merge objects into an unique
-             * object to be exposed to the user,
-             * then end mapping.
-             */
-            Object.assign(availableMethods, newMethods);
-        });
-
-        return availableMethods;
+    if (this instanceof Logger) {
+        if (this.mute) {
+            return;
+        }
+    } else if ( muted.mute ) {
+        return;
     }
+
+
+    return console[obj.method](`[~ ${obj.icon} ${this.NAME || ''} ~]`, ...args);
+  };
 
 }
+
+const methods  = ['log', 'warn', 'info', 'error', 'debug'];
+
+(function addMethods(){
+    methods.map((method) => {
+        let alias = method[0];
+        [method, alias].map( (k) =>
+            Logger[k] = Logger.prototype[k] = function() {
+                let args = Array.prototype.slice.call(arguments);
+                args.unshift( alias );
+                Logger.print.apply(this, args );
+            }
+        );
+    });
+})();
+
+export default Logger;
