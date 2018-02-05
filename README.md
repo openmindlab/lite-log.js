@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b97de7b0fb25f63253dc/maintainability)](https://codeclimate.com/github/micheleriva/lite-log.js/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/micheleriva/lite-log.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/micheleriva/lite-log.js?targetFile=package.json)
 
-Lite-Log is a lightweight (913 byte gziped) logging library for web browsers written in JavaScript with no dependencies. <br />
+Lite-Log is a lightweight (~700 byte gziped) logging library for web browsers written in JavaScript with no dependencies. <br />
 You will also be able to mute your logs, take a look at the examples below.
 
 - [Installation](#installation)
