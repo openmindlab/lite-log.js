@@ -102,10 +102,10 @@ import Log from 'lite-log'
 const Logger = new Log();
 
 Logger.l('Hey!');
-// => [~ 👀 Lite-log ~] Hey!
+// => [~ 👀 ~] Hey!
 
 Logger.w('What a bad error!');
-// => [~ ✋ Lite-log ~] What a bad error!
+// => [~ ✋ ~] What a bad error!
 
 ```
 
