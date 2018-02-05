@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/logger.umd.js",
   "scripts": {
-    "build": "microbundle -f umd -o dist --file Logger --sourcemap n --compress false",
-    "dev": "microbundle watch -f umd -o dist --file Logger --sourcemap n --compress false",
+    "build": "microbundle -f umd -o dist --name Logger --file logger --sourcemap n --compress false",
+    "dev": "microbundle watch -f umd -o dist --name Logger --file logger --sourcemap n --compress false",
     "test": "jest --coverage"
   },
   "author": "openmind",
