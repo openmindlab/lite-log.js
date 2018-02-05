@@ -1,5 +1,5 @@
-jest.unmock('../dist/index.umd');
-const Logger = require('../dist/logger');
+jest.unmock('../dist/logger.umd');
+const Logger = require('../dist/logger.umd');
 
 const Log = new Logger();
 
@@ -10,11 +10,11 @@ const Log = new Logger();
 console.oldLog = Log.log;
 Log.log = (val) => {
     console.oldLog(val);
-    window.$log = '[~ 👀 lite-log ~] ' + val;
+    window.$log = '[~ 👀 ~] ' + val;
 };
 
 Log.log('hey!');
 
 test('Console.log test', () => {
-    expect($log).toBe('[~ 👀 lite-log ~] hey!');
+    expect($log).toBe('[~ 👀 ~] hey!');
 });

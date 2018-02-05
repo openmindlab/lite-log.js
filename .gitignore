@@ -1,4 +1,4 @@
-test.js
+tst.js
 
 # Created by https://www.gitignore.io/api/node,macos,phpstorm
 
@@ -9,7 +9,7 @@ coverage
 *.DS_Store
 .AppleDouble
 .LSOverride
-
+tst.js
 # Icon must end with two \r
 Icon
 

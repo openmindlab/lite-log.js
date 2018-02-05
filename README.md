@@ -11,10 +11,12 @@ You will also be able to mute your logs, take a look at the examples below.
 - [Installation](#installation)
 - [Usage](#usage)
     - [Basic usage](#basic-usage)
+    - [Static Method](#static-method)
     - [Different log instances](#different-log-instances)
     - [Mute a logger](#mute-a-logger)
     - [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
 - [Available Methods](#available-methods)
+- [Mute all loggers](#mute-all-loggers)
 - [Using aliases](#using-aliases)
 
 ### [Installation](#installation)
@@ -36,6 +38,12 @@ Logger.warn('Hey pay attention here!');
 // => [~ ✋ Lite-log ~] Hey pay attention here!
 ```
 
+### [Static Method](#static-method)
+```js
+Logger('Log this!');
+// => [~ 👀 ~] Log this!
+```
+
 #### [Different log instances](#different-log-instances)
 Let's make an example. If you want to debug only a shopping cart component, you can initalize your log instance passing a string as first argument in your `Log()` instance:
 ```js
@@ -53,7 +61,9 @@ You're also able to mute a logger. Take a look at the following example:
 ```js
 import Log from 'lite-log'
 
-const ShoppingCartLogger = new Log('Shopping cart', false);
+const ShoppingCartLogger = new Log('Shopping cart');
+
+ShoppingCartLogger.mute(true);
 
 ShoppingCartLogger.log('Debug here!');
 // => no output!
@@ -68,10 +78,19 @@ import { env } from 'app.env'
 const environment = env === "development";
 // If env === development, environment variable will be TRUE
 
-const ShoppingCartLogger = new Log('Shopping cart', environment);
+const ShoppingCartLogger = new Log('Shopping cart');
+
+ShoppingCartLogger.mute(environment);
 
 ShoppingCartLogger.log('Debug here!');
 // => no output! In that case, environment variable results false!
+```
+
+### [Mute all loggers](#mute-all-loggers)
+```js
+import Log from 'lite-log'
+
+Log.mute(true);
 ```
 
 ### [Using aliases](#using-aliases)
