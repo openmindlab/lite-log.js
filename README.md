@@ -1,101 +1,120 @@
-# Lite-Log
+# 👀 Lite-Log 👀
 
-Lite-Log is a simple easy-to-use library for managing all log line in console
+[![Build Status](https://travis-ci.org/micheleriva/lite-log.js.svg?branch=master)](https://travis-ci.org/micheleriva/lite-log.js)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://img.shields.io/badge/coverage-100%25-green.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b97de7b0fb25f63253dc/maintainability)](https://codeclimate.com/github/micheleriva/lite-log.js/maintainability)
+[![Known Vulnerabilities](https://snyk.io/test/github/micheleriva/lite-log.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/micheleriva/lite-log.js?targetFile=package.json)
 
+Lite-Log is a lightweight (~700 byte gziped) logging library for web browsers written in JavaScript with no dependencies. <br />
+You will also be able to mute your logs, take a look at the examples below.
 
-### Here is an example
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Basic usage](#basic-usage)
+    - [Static Method](#static-method)
+    - [Different log instances](#different-log-instances)
+    - [Mute a logger](#mute-a-logger)
+    - [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
+- [Available Methods](#available-methods)
+- [Mute all loggers](#mute-all-loggers)
+- [Using aliases](#using-aliases)
 
+### [Installation](#installation)
+
+Install using `npm` **(still to be published)**
+```bash
+$ npm install lite-log
+```
+
+### [Usage](#usage)
+
+#### [Basic usage](#basic-usage)
 ```js
-  // STATIC METHODS
-  Logger("Simple line with an object", {key: "value"});  // alias to `Logger.log`
-  Logger.i("this is a test for static instance:", "this is another argument as string", {key: "argument as object"});  // alias to `Logger.info`
-  Logger.w("this is a test for static instance:", "this is another argument as string", {key: "this is an argument as object"});  // alias to `Logger.warn`
-  Logger.mute(true);
-  Logger.i("this line will be ignored");  // alias to `Logger.info`
-  Logger("this line will be ignored");    // alias to `Logger.log`
+import Log from 'lite-log'
 
-  // INSTANCE METHOD
-  var Log = new Logger("ModuleName", true);
-  Log.i("this is a test:", "this is another argument as string", {key: "argument as object"});  // alias to `Log.info`
-  Log.w("this is a test:", "this is another argument as string", {key: "this is an argument as object"});  // alias to `Log.warn`
-  Log.mute(true);
-  Log.i("this line will be ignored");  // alias to "Log.info"
+const Logger = new Log();
+
+Logger.warn('Hey pay attention here!');
+// => [~ ✋ Lite-log ~] Hey pay attention here!
+```
+
+### [Static Method](#static-method)
+```js
+Logger('Log this!');
+// => [~ 👀 ~] Log this!
+```
+
+#### [Different log instances](#different-log-instances)
+Let's make an example. If you want to debug only a shopping cart component, you can initalize your log instance passing a string as first argument in your `Log()` instance:
+```js
+import Log from 'lite-log'
+
+const ShoppingCartLogger = new Log('Shopping cart');
+
+ShoppingCartLogger.log('Debug here!');
+// => [~ 👀 Shopping cart ~] Debug here!
+```
+As you can see, you will have a reference of your instanced logger in your console.
+
+#### [Mute a logger](#mute-a-logger)
+You're also able to mute a logger. Take a look at the following example:
+```js
+import Log from 'lite-log'
+
+const ShoppingCartLogger = new Log('Shopping cart');
+
+ShoppingCartLogger.mute(true);
+
+ShoppingCartLogger.log('Debug here!');
+// => no output!
+```
+As you can see, the `Log()` instance accepts a boolean value as a second argument. If you need to mute your loggers, you will just need to pass a `false` value.
+
+#### [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
+```js
+import Log from 'lite-log'
+import { env } from 'app.env'
+
+const environment = env === "development";
+// If env === development, environment variable will be TRUE
+
+const ShoppingCartLogger = new Log('Shopping cart');
+
+ShoppingCartLogger.mute(environment);
+
+ShoppingCartLogger.log('Debug here!');
+// => no output! In that case, environment variable results false!
+```
+
+### [Mute all loggers](#mute-all-loggers)
+```js
+import Log from 'lite-log'
+
+Log.mute(true);
+```
+
+### [Using aliases](#using-aliases)
+
+Evey method has an alias. Check the example and the table below to learn more:
+```javascript
+import Log from 'lite-log'
+
+const Logger = new Log();
+
+Logger.l('Hey!');
+// => [~ 👀 Lite-log ~] Hey!
+
+Logger.w('What a bad error!');
+// => [~ ✋ Lite-log ~] What a bad error!
 
 ```
 
+### [Available methods](#available-methods)
 
-### Usage
-
-##### Logger(args...)
-Simply log all passed arguments. It is the same of `console.log`
-
-
-##### Logger.e(args...)  or  Logger.error(args...)
-
-Log all passed arguments as per `console.error`
-
-
-##### Logger.w(args...)  or  Logger.warn(args...)
-
-Log all passed arguments as per `console.warn`
-
-
-##### Logger.i(args...)  or  Logger.info(args...)
-
-Log all passed arguments as per `console.info`
-
-
-##### Logger.l(args...)  or  Logger.log(args...)
-
-Log all passed arguments as per `console.log`
-
-
-##### Logger.d(args...)  or  Logger.debug(args...)
-
-Log all passed arguments as per `console.debug`
-
-
-##### Logger.mute(boolean)
-
-Mute/Unmute the logger. Once logger has been muted, it will log nothing
-
-
-##### new Logger(modulename, showline)
-
-Create a new Logger instance.
-Arguments:
-`modulename` (String/Boolean): it is the name of the module just invoked the Logger.
-If `String` it represent exactly the name of the module.
-If `True` it will get the name of the module from the stacktrace.
-If `False` it will not log the module name.
-
-`showline` (Boolean): it enables/disables the `linenumber` in the log.
-
-```js
-var Log_1 = new Logger("ModuleName_1", false);
-var Log_2 = new Logger("ModuleName_2", false);
-Log_1.i("Log my argument");
-Log_2.i("Log my argument");
-// [ModuleName_1] Log my argument
-// [ModuleName_2] Log my argument
-```
-
-
-```js
-var Log_1 = new Logger("ModuleName_1", true);
-var Log_2 = new Logger("ModuleName_2", false);
-Log_1.i("Log my argument");
-Log_2.i("Log my argument");
-// [ModuleName_1:3] Log my argument
-// [ModuleName_2] Log my argument
-```
-
-```js
-// this code is in the `main.js` file
-var Log_1 = new Logger(true, true);
-var Log_2 = new Logger(false, true);
-Log_1.i("Log my argument");
-Log_2.i("Log my argument");
-// [main:3] Log my argument
-// Log my argument
-```
+| Method   | Alias | Js Api               | Output 
+| -------- | ----- | -------------------- | ------
+| log      | l     | `console.log()`      | [~ 👀 Lite-log ~]
+| warn     | w     | `console.warn()`     | [~ ✋ Lite-log ~]
+| error    | e     | `console.error()`    | [~ ‼️ Lite-log ~]
+| info     | i     | `console.info()`     | [~ ℹ️ Lite-log ~]
+| debug    | d     | `console.debug()`    | [~ 🐛 Lite-log ~]
