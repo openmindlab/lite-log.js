@@ -18,16 +18,14 @@ You will also be able to mute your logs, take a look at the examples below.
 - [Mute all loggers](#mute-all-loggers)
 - [Using aliases](#using-aliases)
 
-### [Installation](#installation)
+### 📦 [Installation](#installation)
 
 Install using `npm` **(still to be published)**
 ```bash
 $ npm install lite-log
 ```
 
-### [Usage](#usage)
-
-#### [Basic usage](#basic-usage)
+### ⚡️ [Basic usage](#basic-usage)
 ```js
 import Log from 'lite-log'
 
@@ -37,13 +35,13 @@ Logger.warn('Hey pay attention here!');
 // => [~ ✋ Lite-log ~] Hey pay attention here!
 ```
 
-### [Static Method](#static-method)
+### ⚡️ [Static Method](#static-method)
 ```js
 Logger('Log this!');
 // => [~ 👀 ~] Log this!
 ```
 
-#### [Different log instances](#different-log-instances)
+### ⚡️ [Different log instances](#different-log-instances)
 Let's make an example. If you want to debug only a shopping cart component, you can initalize your log instance passing a string as first argument in your `Log()` instance:
 ```js
 import Log from 'lite-log'
@@ -55,7 +53,7 @@ ShoppingCartLogger.log('Debug here!');
 ```
 As you can see, you will have a reference of your instanced logger in your console.
 
-#### [Mute a logger](#mute-a-logger)
+### ⚡️ [Mute a logger](#mute-a-logger)
 You're also able to mute a logger. Take a look at the following example:
 ```js
 import Log from 'lite-log'
@@ -68,7 +66,7 @@ ShoppingCartLogger.log('Debug here!');
 // => no output!
 ```
 
-#### [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
+### ⚡️ [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
 ```js
 import Log from 'lite-log'
 import { env } from 'app.env'
@@ -84,14 +82,14 @@ ShoppingCartLogger.log('Debug here!');
 // => no output! In that case, environment variable results false!
 ```
 
-### [Mute all loggers](#mute-all-loggers)
+### ⚡️ [Mute all loggers](#mute-all-loggers)
 ```js
 import Log from 'lite-log'
 
 Log.mute(true);
 ```
 
-### [Using aliases](#using-aliases)
+### ⚡️ [Using aliases](#using-aliases)
 
 Evey method has an alias. Check the example and the table below to learn more:
 ```javascript
@@ -107,7 +105,7 @@ Logger.w('What a bad error!');
 
 ```
 
-### [Available methods](#available-methods)
+### 🚀  [Available methods](#available-methods)
 
 | Method   | Alias | Js Api               | Output 
 | -------- | ----- | -------------------- | ------
