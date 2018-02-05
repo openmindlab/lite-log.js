@@ -7,16 +7,16 @@
 Lite-Log is a lightweight (~700 byte gziped) logging library for web browsers written in JavaScript with no dependencies. <br />
 You will also be able to mute your logs, take a look at the examples below.
 
-- [Installation](#installation)
-- [Usage](#usage)
-    - [Basic usage](#basic-usage)
-    - [Static Method](#static-method)
-    - [Different log instances](#different-log-instances)
+- [Installation](#-installation)
+- [Usage](#!)
+    - [Basic usage](#%EF%B8%8F-basic-usage)
+    - [Static Method](#%EF%B8%8F-static-method)
+    - [Different log instances](#%EF%B8%8F-different-log-instances)
     - [Mute a logger](#mute-a-logger)
-    - [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
-- [Available Methods](#available-methods)
-- [Mute all loggers](#mute-all-loggers)
-- [Using aliases](#using-aliases)
+    - [Mute a logger (more advanced usage)](#%EF%B8%8F-mute-a-logger-more-advanced-usage)
+    - [Mute all loggers](#%EF%B8%8F-mute-all-loggers)
+    - [Using aliases](#%EF%B8%8F-using-aliases)
+- [Available Methods](#--available-methods)
 
 ### 📦 [Installation](#installation)
 
