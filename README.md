@@ -1,7 +1,6 @@
 # 👀 Lite-Log 👀
 
 [![Build Status](https://travis-ci.org/micheleriva/lite-log.js.svg?branch=master)](https://travis-ci.org/micheleriva/lite-log.js)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://img.shields.io/badge/coverage-100%25-green.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b97de7b0fb25f63253dc/maintainability)](https://codeclimate.com/github/micheleriva/lite-log.js/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/micheleriva/lite-log.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/micheleriva/lite-log.js?targetFile=package.json)
 
@@ -68,7 +67,6 @@ ShoppingCartLogger.mute(true);
 ShoppingCartLogger.log('Debug here!');
 // => no output!
 ```
-As you can see, the `Log()` instance accepts a boolean value as a second argument. If you need to mute your loggers, you will just need to pass a `false` value.
 
 #### [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
 ```js
