@@ -1,11 +1,11 @@
 {
   "name": "lite-log",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/logger.umd.js",
   "scripts": {
-    "build": "microbundle -f umd -o dist --file logger --sourcemap n --compress false",
-    "dev": "microbundle watch -f umd -o dist --file logger --sourcemap n --compress false",
+    "build": "microbundle -f umd -o dist --file Logger --sourcemap n --compress false",
+    "dev": "microbundle watch -f umd -o dist --file Logger --sourcemap n --compress false",
     "test": "jest --coverage"
   },
   "author": "openmind",
