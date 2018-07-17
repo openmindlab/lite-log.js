@@ -1,6 +1,6 @@
 {
-  "name": "lite-log",
-  "version": "2.0.1",
+  "name": "@openmind/litelog",
+  "version": "3.0.0",
   "description": "",
   "main": "dist/logger.umd.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "author": "openmind",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^22.1.4",
+    "jest": "22.1.4",
     "microbundle": "https://github.com/fatshotty/microbundle"
   }
 }

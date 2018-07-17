@@ -3,15 +3,15 @@ let muted = {mute: false, all: false};
 
 class Logger {
 
-    constructor(instanceName){
+  constructor(instanceName){
 
-      if ( this instanceof Logger ) {
-          this.__instance_name__ = instanceName || '';
-          muted.all && (this.mute = muted.mute);
-          instances.push(this)
-      } else {
-          Logger.print('', ...arguments);
-      }
+    if ( this instanceof Logger ) {
+        this.__instance_name__ = instanceName || '';
+        muted.all && (this.mute = muted.mute);
+        instances.push(this)
+    } else {
+        Logger.print('', ...arguments);
+    }
   }
 
   get NAME() {
