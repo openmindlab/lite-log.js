@@ -20,7 +20,7 @@ You will also be able to mute your logs, take a look at the examples below.
 
 ### 📦 [Installation](#installation)
 
-Install using `npm` **(still to be published)**
+Install using `npm` or `yarn` **(still to be published)**
 ```bash
 $ npm install @openmind/litelog --save
 ```
