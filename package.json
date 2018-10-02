@@ -1,5 +1,5 @@
 {
-  "name": "lite-log",
+  "name": "@openmind/litelog",
   "version": "3.0.1",
   "description": "Lightweight logging library for web browsers and Node.js applications.",
   "main": "dist/logger.umd.js",
@@ -17,5 +17,8 @@
   "devDependencies": {
     "jest": "^22.1.4",
     "microbundle": "https://github.com/fatshotty/microbundle"
+  },
+  "jest": {
+    "testURL": "http://localhost"
   }
 }
