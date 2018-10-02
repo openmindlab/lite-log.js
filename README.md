@@ -31,7 +31,7 @@ $ yarn add @openmind/litelog
 
 ### ⚡️ [Basic usage](#basic-usage)
 ```js
-import Log from 'lite-log'
+import Log from '@openmind/litelog'
 
 const Logger = new Log();
 
@@ -48,7 +48,7 @@ Logger('Log this!');
 ### ⚡️ [Different log instances](#different-log-instances)
 Let's make an example. If you want to debug only a shopping cart component, you can initalize your log instance passing a string as first argument in your `Log()` instance:
 ```js
-import Log from 'lite-log'
+import Log from '@openmind/litelog'
 
 const ShoppingCartLogger = new Log('Shopping cart');
 
@@ -60,7 +60,7 @@ As you can see, you will have a reference of your instanced logger in your conso
 ### ⚡️ [Mute a logger](#mute-a-logger)
 You're also able to mute a logger. Take a look at the following example:
 ```js
-import Log from 'lite-log'
+import Log from '@openmind/litelog'
 
 const ShoppingCartLogger = new Log('Shopping cart');
 
@@ -72,7 +72,7 @@ ShoppingCartLogger.log('Debug here!');
 
 ### ⚡️ [Mute a logger (more advanced usage)](#mute-a-logger-more-advanced-usage)
 ```js
-import Log from 'lite-log'
+import Log from '@openmind/litelog'
 import { env } from 'app.env'
 
 const environment = env === "development";
@@ -88,7 +88,7 @@ ShoppingCartLogger.log('Debug here!');
 
 ### ⚡️ [Mute all loggers](#mute-all-loggers)
 ```js
-import Log from 'lite-log'
+import Log from '@openmind/litelog'
 
 Log.mute(true);
 ```
@@ -97,7 +97,7 @@ Log.mute(true);
 
 Evey method has an alias. Check the example and the table below to learn more:
 ```javascript
-import Log from 'lite-log'
+import Log from '@openmind/litelog'
 
 const Logger = new Log();
 
