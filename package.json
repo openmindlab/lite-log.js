@@ -1,8 +1,12 @@
 {
   "name": "lite-log",
-  "version": "2.0.0",
-  "description": "",
+  "version": "3.0.1",
+  "description": "Lightweight logging library for web browsers and Node.js applications.",
   "main": "dist/logger.umd.js",
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/openmindlab/lite-log.js"
+  },
   "scripts": {
     "build": "microbundle -f umd -o dist --file logger --sourcemap n --compress false",
     "dev": "microbundle watch -f umd -o dist --file logger --sourcemap n --compress false",
