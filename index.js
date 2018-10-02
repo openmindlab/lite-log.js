@@ -36,12 +36,12 @@ class Logger {
   static print(type, ...args){
     let obj;
     switch (type){
-        case 'w': obj = {icon: '✋', method: 'warn'};  break;
-        case 'i': obj = {icon: 'ℹ️', method: 'info'};  break;
-        case 'd': obj = {icon: '🐛', method: 'log'}; break;
-        case 'e': obj = {icon: '‼️', method: 'error'}; break;
+        case 'w': obj = {icon: '\u270B',       method: 'warn'};   break;
+        case 'i': obj = {icon: '\u2139\uFE0F', method: 'info'};   break;
+        case 'd': obj = {icon: '\uD83D\uDC1B', method: 'log'};    break;
+        case 'e': obj = {icon: '\u203C\uFE0F', method:  'error'}; break;
         case 'l':
-        default:  obj = {icon: '👀', method: 'log'};   break;
+        default:  obj = {icon: '\uD83D\uDC40', method: 'log'};    break;
     }
 
     if (this instanceof Logger) {
