@@ -98,3 +98,35 @@ Log.e('hey!');
 test('Console.log test', () => {
     expect($e).toBe('[~ ‼️ ~] hey!');
 });
+
+/*
+ * Debug test
+ */
+
+console.oldDebug = Log.debug;
+Log.debug = (val) => {
+    console.oldDebug(val);
+    window.$debug = '[~ ⚙️ ~] ' + val;
+};
+
+Log.debug('hey!');
+
+test('Console.log test', () => {
+    expect($debug).toBe('[~ ⚙️ ~] hey!');
+});
+
+/*
+ * Debug alias test
+ */
+
+console.oldDebug = Log.d;
+Log.d = (val) => {
+    console.oldDebug(val);
+    window.$debug = '[~ ⚙️ ~] ' + val;
+};
+
+Log.d('hey!');
+
+test('Console.log test', () => {
+    expect($debug).toBe('[~ ⚙️ ~] hey!');
+});

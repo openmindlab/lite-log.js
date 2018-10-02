@@ -33,15 +33,21 @@ class Logger {
         this.__mute__ = bool;
   }
 
+  checkDebug() {
+    return typeof console.debug !== 'undefined'
+           ? 'debug'
+           : 'log'
+  }
+
   static print(type, ...args){
     let obj;
     switch (type){
-        case 'w': obj = {icon: '\u270B',       method: 'warn'};   break;
-        case 'i': obj = {icon: '\u2139\uFE0F', method: 'info'};   break;
-        case 'd': obj = {icon: '\uD83D\uDC1B', method: 'log'};    break;
-        case 'e': obj = {icon: '\u203C\uFE0F', method:  'error'}; break;
+        case 'w': obj = {icon: '\u270B',       method: 'warn'};             break;
+        case 'i': obj = {icon: '\u2139\uFE0F', method: 'info'};             break;
+        case 'd': obj = {icon: '\uD83D\uDC1B', method: this.checkDebug()};  break;
+        case 'e': obj = {icon: '\u203C\uFE0F', method: 'error'};            break;
         case 'l':
-        default:  obj = {icon: '\uD83D\uDC40', method: 'log'};    break;
+        default:  obj = {icon: '\uD83D\uDC40', method: 'log'};              break;
     }
 
     if (this instanceof Logger) {
@@ -51,7 +57,6 @@ class Logger {
     } else if ( muted.mute ) {
         return;
     }
-
 
     return console[obj.method](`[~ ${obj.icon} ${this.NAME || ''} ~]`, ...args);
   };
