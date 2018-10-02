@@ -1,17 +1,24 @@
 {
-  "name": "lite-log",
-  "version": "2.0.0",
-  "description": "",
+  "name": "@openmind/litelog",
+  "version": "3.0.1",
+  "description": "Lightweight logging library for web browsers and Node.js applications.",
   "main": "dist/logger.umd.js",
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/openmindlab/lite-log.js"
+  },
   "scripts": {
     "build": "microbundle -f umd -o dist --file logger --sourcemap n --compress false",
     "dev": "microbundle watch -f umd -o dist --file logger --sourcemap n --compress false",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "author": "openmind",
   "license": "ISC",
   "devDependencies": {
     "jest": "^22.1.4",
     "microbundle": "https://github.com/fatshotty/microbundle"
+  },
+  "jest": {
+    "testURL": "http://localhost"
   }
 }

@@ -22,7 +22,11 @@ You will also be able to mute your logs, take a look at the examples below.
 
 Install using `npm` **(still to be published)**
 ```bash
-$ npm install lite-log
+$ npm install @openmind/litelog --save
+```
+
+```bash
+$ yarn add @openmind/litelog
 ```
 
 ### ⚡️ [Basic usage](#basic-usage)

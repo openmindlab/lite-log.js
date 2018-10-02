@@ -54,32 +54,32 @@ Logger.print = function print (type) {
     switch (type) {
         case 'w':
             obj = {
-                icon: '✋',
+                icon: '\u270B',
                 method: 'warn'
             };
             break;
         case 'i':
             obj = {
-                icon: 'ℹ️',
+                icon: '\u2139\uFE0F',
                 method: 'info'
             };
             break;
         case 'd':
             obj = {
-                icon: '🐛',
+                icon: '\uD83D\uDC1B',
                 method: 'log'
             };
             break;
         case 'e':
             obj = {
-                icon: '‼️',
+                icon: '\u203C\uFE0F',
                 method: 'error'
             };
             break;
         case 'l':
         default:
             obj = {
-                icon: '👀',
+                icon: '\uD83D\uDC40',
                 method: 'log'
             };
             break;
