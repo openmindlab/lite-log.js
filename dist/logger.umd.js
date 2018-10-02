@@ -67,7 +67,7 @@ Logger.print = function print (type) {
         case 'd':
             obj = {
                 icon: '\uD83D\uDC1B',
-                method: 'log'
+                method: typeof console.debug !== 'undefined' ? 'debug' : 'log'
             };
             break;
         case 'e':
