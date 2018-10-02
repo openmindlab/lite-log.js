@@ -19,6 +19,6 @@
     "microbundle": "https://github.com/fatshotty/microbundle"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testURL": "http://localhost"
   }
 }
