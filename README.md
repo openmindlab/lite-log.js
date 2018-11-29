@@ -118,3 +118,4 @@ Logger.w('What a bad error!');
 | error    | e     | `console.error()`    | [~ ‼️ Lite-log ~]
 | info     | i     | `console.info()`     | [~ ℹ️ Lite-log ~]
 | debug    | d     | `console.debug()`    | [~ 🐛 Lite-log ~]
+
