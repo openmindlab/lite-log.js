@@ -46,7 +46,7 @@ const WbConfig = require("./webpack-config");
 delete WbConfig.devtool;
 delete WbConfig.entry;
 
-generate_new_version();
+// generate_new_version();
 
 
 module.exports = WbMerge(WbConfig, {
