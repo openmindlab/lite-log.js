@@ -13,9 +13,6 @@ class Logger {
       this.__instance_name__ = instanceName || '';
       muted.all && (this.mute = muted.mute);
       instances.push(this)
-
-      instanceInTree(this);
-
     } else {
       Logger.print('', ...arguments);
     }
