@@ -1,5 +1,6 @@
 jest.unmock('../dist/logger.umd');
-const Logger = require('../dist/logger.umd');
+const Logger = require('../dist/logger.umd').default;
+
 
 const Log = new Logger();
 
