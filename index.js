@@ -13,6 +13,9 @@ class Logger {
       this.__instance_name__ = instanceName || '';
       muted.all && (this.mute = muted.mute);
       instances.push(this)
+
+      instanceInTree(this);
+
     } else {
       Logger.print('', ...arguments);
     }
@@ -69,7 +72,7 @@ const methods  = ['log', 'warn', 'info', 'error', 'debug'];
     let alias = method[0];
     [method, alias].map( (k) =>
       Logger[k] = Logger.prototype[k] = function() {
-        let args = Array.prototype.slice.call(arguments);
+        let args = Array.prototype.slice.call(arguments, 0);
         args.unshift( alias );
         Logger.print.apply(this, args );
       }
