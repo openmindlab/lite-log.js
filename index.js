@@ -10,7 +10,7 @@ class Logger {
   constructor(instanceName){
 
     if ( this instanceof Logger ) {
-      this.__instance_name__ = instanceName || '';
+      this.__instance_name__ = instanceName || `[${instances.length}]`;
       muted.all && (this.mute = muted.mute);
       instances.push(this)
     } else {
@@ -22,14 +22,24 @@ class Logger {
     return this.__instance_name__;
   }
 
-  static mute(bool, instance){
-    muted = {mute: !!bool, all: !!instance};
+  static mute(bool, all){
+    muted = {mute: !!bool, all: !!all};
     if ( muted.all ) {
       for( let instance of instances ){
         instance.mute = muted.mute;
       }
     }
   }
+
+  static getLogger(name) {
+    for( let instance of instances ) {
+      if ( instance && instance.__instance_name__ === name ){
+        return instance;
+      }
+    }
+    return null;
+  }
+
 
   get mute() {
     return this.__mute__;

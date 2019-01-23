@@ -2,7 +2,7 @@ jest.unmock('../dist/logger.umd');
 const Logger = require('../dist/logger.umd').default;
 
 
-const Log = new Logger();
+const Log = new Logger('Test');
 
 /*
  * Log test
@@ -130,4 +130,24 @@ Log.d('hey!');
 
 test('Console.log test', () => {
     expect($debug).toBe('[~ ⚙️ ~] hey!');
+});
+
+test('get Logger instance', () => {
+    const tLog = Logger.getLogger('Test');
+    expect( !!tLog ).toBe( true );
+});
+
+test('mute Logger instance', () => {
+    const tLog = Logger.getLogger('Test');
+    let done = false;
+    console.info = function() {
+      done = true;
+    };
+    tLog.info('test info');
+    expect(done).toBe(true);
+    done = false;
+    tLog.mute = true;
+    tLog.info('test info');
+    expect(tLog.mute).toBe(true);
+    expect(done).toBe(false);
 });
