@@ -42,9 +42,6 @@ module.exports = {
         'process.env': {
           VERSION: `'${Package.version}'`
         }
-    }),
-    new Webpack.ProvidePlugin({
-      'window.LOG_LEVEL': 4
     })
   ],
 
