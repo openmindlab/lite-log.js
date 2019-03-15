@@ -1,8 +1,8 @@
 {
   "name": "@openmind/litelog",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Lightweight logging library for web browsers and Node.js applications.",
-  "main": "dist/logger.umd.js",
+  "main": "dist/logger.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/openmindlab/lite-log.js"

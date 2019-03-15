@@ -1,5 +1,5 @@
-jest.unmock('../dist/logger.umd');
-const Logger = require('../dist/logger.umd').default;
+jest.unmock('../dist/logger');
+const Logger = require('../dist/logger').default;
 
 
 const Log = new Logger('Test');
@@ -48,7 +48,7 @@ Log.warn = (val) => {
 
 Log.warn('hey!');
 
-test('Console.log test', () => {
+test('Console.warn test', () => {
     expect($warn).toBe('[~ ✋ ~] hey!');
 });
 

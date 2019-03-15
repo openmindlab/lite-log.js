@@ -54,17 +54,16 @@ module.exports = WbMerge(WbConfig, {
   mode: 'production',
 
   entry: {
-    zero: './index.js'
+    logger: './index.js'
   },
 
   watch: false,
 
   output: {
-    filename: "logger.umd.js",
+    filename: "logger.js",
     libraryTarget: 'umd',
     library: 'logger',
     umdNamedDefine: true,
     globalObject: 'this'
   }
 })
-

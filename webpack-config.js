@@ -40,8 +40,11 @@ module.exports = {
   plugins: [
     new Webpack.DefinePlugin({
         'process.env': {
-            VERSION: `'${Package.version}'`
+          VERSION: `'${Package.version}'`
         }
+    }),
+    new Webpack.ProvidePlugin({
+      'window.LOG_LEVEL': 4
     })
   ],
 

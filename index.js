@@ -1,5 +1,40 @@
 const instances = [];
-let muted = {mute: false, all: false};
+
+const LEVELS = Object.freeze({
+  LOG: 4,
+  DEBUG: 4,
+  INFO: 3,
+  WARN: 2,
+  ERROR: 1,
+  NONE: 0
+});
+
+let muted = { mute: false, all: false};
+
+const DEFAULT_LEVEL = window.LOG_LEVEL || LEVELS.LOG;
+let level = DEFAULT_LEVEL;
+
+const SetLevel = function(value) {
+  let lvl = null;
+  if (typeof value == 'string') {
+    lvl = LEVELS[value.toUpperCase()];
+  } else if (typeof value == 'boolean') {
+    if (value) {
+      lvl = DEFAULT_LEVEL;
+    } else {
+      lvl = LEVELS.NONE;
+    }
+  } else if ( typeof value == 'number') {
+    lvl = value >= 0 && value <= 4 ? value : null;
+  }
+
+  if (typeof lvl != 'number') {
+    console.trace();
+    throw new Error(`invalid logger level ${value} -> ${lvl}`);
+  }
+  return lvl;
+}
+
 
 class Logger {
 
@@ -11,7 +46,7 @@ class Logger {
 
     if ( this instanceof Logger ) {
       this.__instance_name__ = instanceName || `[${instances.length}]`;
-      muted.all && (this.mute = muted.mute);
+      this.level = level;
       instances.push(this)
     } else {
       Logger.print('', ...arguments);
@@ -23,10 +58,18 @@ class Logger {
   }
 
   static mute(bool, all){
-    muted = {mute: !!bool, all: !!all};
-    if ( muted.all ) {
-      for( let instance of instances ){
-        instance.mute = muted.mute;
+    Logger.level(bool ? LEVELS.NONE : DEFAULT_LEVEL, all );
+  }
+
+
+  static level(value, all) {
+    if ( arguments.length <= 0 ){
+      return level;
+    }
+    level = SetLevel(value);
+    if ( all === true ) {
+      for (let instance of instances) {
+        instance.level = level;
       }
     }
   }
@@ -42,10 +85,17 @@ class Logger {
 
 
   get mute() {
-    return this.__mute__;
+    return this.__level__ === LEVELS.NONE;
   }
   set mute(bool) {
-    this.__mute__ = bool;
+    this.__level__ = bool ? LEVELS.NONE : DEFAULT_LEVEL;
+  }
+
+  get level() {
+    return this.__level__;
+  }
+  set level(value) {
+    this.__level__ = SetLevel(value);
   }
 
   static print(type, ...args){
@@ -76,9 +126,20 @@ const methods  = ['log', 'warn', 'info', 'error', 'debug'];
 
 (function addMethods(){
   methods.map((method) => {
-    let alias = method[0];
+    let alias = method.charAt(0);
     [method, alias].map( (k) =>
       Logger[k] = Logger.prototype[k] = function() {
+
+        let check_level = level;
+        if ( this instanceof Logger ){
+          check_level = this.level;
+        }
+
+        if ( check_level < LEVELS[ method.toUpperCase() ]  ) {
+          // logger level has been muted
+          return;
+        }
+
         let args = Array.prototype.slice.call(arguments, 0);
         args.unshift( alias );
         Logger.print.apply(this, args );

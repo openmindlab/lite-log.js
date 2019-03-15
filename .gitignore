@@ -5,6 +5,8 @@ tst.js
 # Jest
 coverage
 
+.vscode
+
 ### macOS ###
 *.DS_Store
 .AppleDouble
